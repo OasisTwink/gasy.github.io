@@ -145,6 +145,73 @@
         background-clip: text;
         color: transparent;
     }
+
+        /* New styles for admin panel and announcements */
+        .announcement-bar {
+            background: #1D1D1E;
+            border: 2px solid #181819;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #0F0F10;
+            border: 2px solid #181819;
+            border-radius: 12px;
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            z-index: 1000;
+        }
+
+        .admin-panel h2 {
+            font-family: 'sflight';
+            background: linear-gradient(180deg, #AFAFAF 0%, #9B9B9B 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .admin-input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #181819;
+            border-radius: 8px;
+            background: #1D1D1E;
+            color: white;
+            font-family: 'sfregular';
+        }
+
+        .admin-button {
+            background: linear-gradient(180deg, #6999FC 0%, #4983FB 100%);
+            border: 2px solid #FFFFFF1A;
+            border-radius: 8px;
+            padding: 10px 20px;
+            color: white;
+            font-family: 'sflight';
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .admin-button:hover {
+            transform: scale(1.05);
+        }
+
+        .viewer-count {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #6999FC;
+        }
+    </style>
 </style>
     <script>
         module.exports = {
@@ -494,6 +561,54 @@
     </section>
 
     <script src="https://cdn.tailwindcss.com"></script>
-</body>
+    
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <h2>Admin Panel</h2>
+        <textarea class="admin-input" id="announcementInput" placeholder="Enter announcement here"></textarea>
+        <button class="admin-button" onclick="postAnnouncement()">Post Announcement</button>
+        <button class="admin-button" onclick="closeAdminPanel()" style="margin-left: 10px;">Close</button>
+        <div class="viewer-count" id="viewerCount">Currently viewing: 0</div>
+    </div>
 
+    <script>
+        // Load announcement from localStorage on page load
+        window.onload = function() {
+            const savedAnnouncement = localStorage.getItem('announcement');
+            if (savedAnnouncement) {
+                document.getElementById('announcementBar').style.display = 'block';
+                document.getElementById('announcementText').textContent = savedAnnouncement;
+            }
+            updateViewerCount(); // Initial viewer count
+            setInterval(updateViewerCount, 5000); // Update every 5 seconds
+        };
+
+        // Open admin panel with Ctrl+Shift+A
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+                document.getElementById('adminPanel').style.display = 'block';
+            }
+        });
+
+        function postAnnouncement() {
+            const announcement = document.getElementById('announcementInput').value.trim();
+            if (announcement) {
+                localStorage.setItem('announcement', announcement);
+                document.getElementById('announcementBar').style.display = 'block';
+                document.getElementById('announcementText').textContent = announcement;
+                document.getElementById('announcementInput').value = ''; // Clear input
+            }
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('adminPanel').style.display = 'none';
+        }
+
+        function updateViewerCount() {
+            // Simulate viewer count (random between 1 and 10 since no backend)
+            const fakeCount = Math.floor(Math.random() * 10) + 1;
+            document.getElementById('viewerCount').textContent = `Currently viewing: ${fakeCount}`;
+        }
+    </script>
+</body>
 </html>
