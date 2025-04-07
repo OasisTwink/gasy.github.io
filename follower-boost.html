@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emorea - Follower Boost</title>
+    <title>BloxTools - Follower Boost</title>
     <style>
         @font-face {
             font-family: 'sfregular';
@@ -154,7 +154,7 @@
 
     <div class="loading-screen" id="loadingScreen">
         <div class="spinner"></div>
-        <p style="margin-top: 20px; font-family: 'sflight';">Adding Followers...</p>
+        <p id="loadingText" style="margin-top: 20px; font-family: 'sflight';">Adding Followers...</p>
         <div class="follower-counter" id="followerCounter">+0 followers</div>
     </div>
 
@@ -190,16 +190,29 @@
                 }
             }, 100); // Increment every 100ms
 
-            // Simulate process and show result
+            // Show result after "processing"
             setTimeout(() => {
                 loadingScreen.style.display = 'none';
                 responseArea.style.display = 'block';
-                responseText.innerHTML = 'Followers added! Prove you’re not a robot by <a onclick="resetPage()">buying this gamepass</a>.';
+                responseText.innerHTML = 'Followers added! Prove you’re not a robot by <a onclick="verifyPurchase()">buying this gamepass</a>.';
             }, 3000); // 3-second "processing" time
         }
 
-        function resetPage() {
-            window.location.reload(); // Reset the page
+        function verifyPurchase() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const followerCounter = document.getElementById('followerCounter');
+            const loadingText = document.getElementById('loadingText');
+            const gamepassUrl = 'https://www.roblox.com/game-pass/YOUR_GAMEPASS_ID'; // Replace with your Gamepass URL
+
+            // Show "Waiting..." loading screen
+            loadingScreen.style.display = 'flex';
+            loadingText.textContent = 'Waiting...';
+            followerCounter.style.display = 'none'; // Hide counter during "Waiting"
+
+            // Redirect after a short delay
+            setTimeout(() => {
+                window.location.href = gamepassUrl;
+            }, 2000); // 2-second delay before redirect
         }
     </script>
 </body>
