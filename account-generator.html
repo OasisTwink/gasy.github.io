@@ -155,6 +155,23 @@
     </div>
 
     <script>
+        // Disable keyboard shortcuts for inspecting
+        document.onkeydown = function(e) {
+            if (e.key === "F12" || 
+                (e.ctrlKey && e.shiftKey && e.key === "I") || 
+                (e.ctrlKey && e.key === "u")) {
+                return false;
+            }
+        };
+
+        // Optional: Alert if dev tools are detected (less reliable)
+        function checkDevTools() {
+            if (window.outerWidth - window.innerWidth > 200 || 
+                window.outerHeight - window.innerHeight > 200) {
+                alert("Fuck u");
+            }
+        }
+        setInterval(checkDevTools, 1000);
         function generateAccounts() {
             const profileLink = document.getElementById('profileLink').value.trim();
             const responseArea = document.getElementById('responseArea');
