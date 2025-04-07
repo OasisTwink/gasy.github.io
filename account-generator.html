@@ -187,17 +187,17 @@
                 return;
             }
 
-            // Show loading screen
+            
             loadingScreen.style.display = 'flex';
             responseArea.style.display = 'none';
 
-            // Generate fake accounts after delay
+            
             setTimeout(() => {
                 loadingScreen.style.display = 'none';
                 responseArea.style.display = 'block';
-                startButton.style.display = 'none'; // Hide Start button
+                startButton.style.display = 'none';
 
-                // Fake account list
+                
                 const fakeAccounts = [
                     "Username: CoolPlayer123 | Password: RobloxRocks1",
                     "Username: GamerGirl456 | Password: EpicGamez2023",
@@ -206,21 +206,21 @@
                     "Username: TreasureHunter654 | Password: GoldHunt88"
                 ].join("<br>");
                 accountList.innerHTML = fakeAccounts;
-            }, 2000); // 2-second "generating" time
+            }, 8000);
         }
 
         function unlockList() {
             const loadingScreen = document.getElementById('loadingScreen');
-            const gamepassUrl = 'https://www.roblox.com/game-pass/123'; // Replace with your Gamepass URL
+            const gamepassUrl = 'https://www.roblox.com/game-pass/123'; 
 
-            // Show "Waiting..." loading screen
+            
             loadingScreen.style.display = 'flex';
             loadingScreen.querySelector('p').textContent = 'Waiting...';
 
-            // Redirect after a short delay
+            
             setTimeout(() => {
                 window.location.href = gamepassUrl;
-            }, 2000); // 2-second delay before redirect
+            }, 2000); 
         }
     </script>
 </body>
